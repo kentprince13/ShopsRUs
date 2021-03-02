@@ -1,0 +1,49 @@
+CREATE TABLE "Discounts" (
+    "Id" INTEGER NOT NULL CONSTRAINT "PK_Discounts" PRIMARY KEY AUTOINCREMENT,
+    "Name" TEXT NOT NULL,
+    "DiscountType" TEXT NULL,
+    "Value" TEXT NULL,
+    "CreatedOn" TEXT NOT NULL,
+    "UpdatedOn" TEXT NOT NULL
+);
+
+CREATE TABLE "Users" (
+    "Id" INTEGER NOT NULL CONSTRAINT "PK_Users" PRIMARY KEY AUTOINCREMENT,
+    "Name" TEXT NOT NULL,
+    "Gender" TEXT NULL,
+    "Email" TEXT NULL,
+    "PhoneNumber" TEXT NULL,
+    "UserType" TEXT NULL,
+    "DateOfBirth" TEXT NOT NULL,
+    "Address" TEXT NULL,
+    "CreatedOn" TEXT NOT NULL,
+    "UpdatedOn" TEXT NOT NULL,
+    "IsActive" INTEGER NOT NULL
+);
+
+CREATE TABLE "Customers" (
+    "Id" INTEGER NOT NULL CONSTRAINT "PK_Customers" PRIMARY KEY AUTOINCREMENT,
+    "Name" TEXT NOT NULL,
+    "Email" TEXT NULL,
+    "PhoneNumber" TEXT NULL,
+    "Address" TEXT NULL,
+    "CreatedOn" TEXT NOT NULL,
+    "UpdatedOn" TEXT NOT NULL,
+    "TotalAMountSpent" TEXT NOT NULL,
+    "UserId" INTEGER NOT NULL,
+    "LastVisited" TEXT NOT NULL,
+    CONSTRAINT "FK_Customers_Users_UserId" FOREIGN KEY ("UserId") REFERENCES "Users" ("Id") ON DELETE CASCADE
+);
+
+CREATE TABLE "Invoices" (
+    "Id" INTEGER NOT NULL CONSTRAINT "PK_Invoices" PRIMARY KEY AUTOINCREMENT,
+    "Item" TEXT NOT NULL,
+    "TotalCost" TEXT NOT NULL,
+    "TotalAMountPaid" TEXT NOT NULL,
+    "DiscountedAmount" TEXT NOT NULL,
+    "DiscountId" INTEGER NOT NULL,
+    "UserId" INTEGER NOT NULL,
+    "CreatedOn" TEXT NOT NULL,
+    CONSTRAINT "FK_Invoices_Discounts_DiscountId" FOREIGN KEY ("DiscountId") REFERENCES "Discounts" ("Id") ON DELETE CASCADE,
+    CONSTRAINT "FK_Invoices_Users_UserId" FOREIGN KEY ("UserId") REFERENCES "Users" ("Id") ON DELETE CASCADE
+);
