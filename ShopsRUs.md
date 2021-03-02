@@ -1,8 +1,10 @@
-This project is built using .Net 5, so .Net 5 SDK is required
+This project was built using .Net 5, so .Net 5 SDK is required.
 
-Run update-migration in the console to populate daabase with seed data
+Preffered IDE is vs2019.
 
-Select ShopsRUs.Api as a start up project
+Run update-migration in the console to populate daabase with seed data.
 
-Run the Solution 
+Select ShopsRUs.Api as a start up project.
+
+Run the Project 
  
